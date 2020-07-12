@@ -101,6 +101,13 @@ TURBO_SAMPLE_RATE = 0.1
 
 PROJECT_STACKTRACE_BLACKLIST: Set[int] = set()
 
+EVENTS_TOPIC = "events"
+REPLACEMENTS_TOPIC = "event-replacements"
+COMMIT_LOG_TOPIC = "snuba-commit-logs"
+CDC_TOPIC = "cdc"
+OUTCOMES_TOPIC = "outcomes"
+INGEST_SESSIONS_TOPIC = "ingest-sessions"
+
 TOPIC_PARTITION_COUNTS: Mapping[str, int] = {}  # (topic name, # of partitions)
 
 AST_DATASET_ROLLOUT: Mapping[str, int] = {}  # (dataset name: percentage)
