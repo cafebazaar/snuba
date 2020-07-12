@@ -1,3 +1,4 @@
+from snuba import settings
 from snuba.clickhouse.columns import (
     ColumnSet,
     DateTime,
@@ -121,7 +122,7 @@ raw_storage = WritableTableStorage(
     schema=raw_schema,
     query_processors=[],
     stream_loader=KafkaStreamLoader(
-        processor=OutcomesProcessor(), default_topic="outcomes",
+        processor=OutcomesProcessor(), default_topic=settings.OUTCOMES_TOPIC,
     ),
 )
 

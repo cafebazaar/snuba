@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Mapping, Sequence
 
+from snuba import settings
 from snuba.clickhouse.columns import (
     UUID,
     Array,
@@ -203,7 +204,8 @@ storage = WritableTableStorage(
         PrewhereProcessor(),
     ],
     stream_loader=KafkaStreamLoader(
-        processor=TransactionsMessageProcessor(), default_topic="events",
+        processor=TransactionsMessageProcessor(),
+        default_topic=settings.EVENTS_TOPIC,
     ),
     query_splitters=[TimeSplitQueryStrategy(timestamp_col="finish_ts")],
     writer_options={"insert_allow_materialized_columns": 1},

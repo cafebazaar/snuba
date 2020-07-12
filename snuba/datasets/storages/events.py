@@ -1,5 +1,6 @@
 from typing import Mapping, Sequence
 
+from snuba import settings
 from snuba.clickhouse.columns import ColumnType
 from snuba.clusters.storage_sets import StorageSetKey
 from snuba.datasets.errors_replacer import ErrorsReplacer, ReplacerState
@@ -119,9 +120,9 @@ storage = WritableTableStorage(
     query_processors=query_processors,
     stream_loader=KafkaStreamLoader(
         processor=EventsProcessor(promoted_tag_columns),
-        default_topic="events",
-        replacement_topic="event-replacements",
-        commit_log_topic="snuba-commit-log",
+        default_topic=settings.EVENTS_TOPIC,
+        replacement_topic=settings.REPLACEMENTS_TOPIC,
+        commit_log_topic=settings.COMMIT_LOG_TOPIC,
     ),
     query_splitters=query_splitters,
     replacer_processor=ErrorsReplacer(

@@ -1,3 +1,4 @@
+from snuba import settings
 from snuba.clickhouse.columns import (
     AggregateFunction,
     ColumnSet,
@@ -135,7 +136,8 @@ raw_storage = WritableTableStorage(
     schema=raw_schema,
     query_processors=[],
     stream_loader=KafkaStreamLoader(
-        processor=SessionsProcessor(), default_topic="ingest-sessions",
+        processor=SessionsProcessor(),
+        default_topic=settings.INGEST_SESSIONS_TOPIC,
     ),
 )
 # The materialized view we query aggregate data from.
