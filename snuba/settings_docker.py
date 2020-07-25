@@ -20,5 +20,7 @@ OUTCOMES_TOPIC = env("OUTCOMES_TOPIC", "outcomes")
 INGEST_SESSIONS_TOPIC = env("INGEST_SESSION_TOPIC", "ingest-sessions")
 
 # Dogstatsd Options
-DOGSTATSD_HOST = None
-DOGSTATSD_PORT = None
+DOGSTATSD_HOST = os.getenv("DOGSTATSD_HOST")
+DOGSTATSD_PORT = os.getenv("DOGSTATSD_PORT")
+
+SENTRY_DSN = os.getenv("SENTRY_DSN")
