@@ -121,7 +121,7 @@ storage = WritableTableStorage(
     stream_loader=KafkaStreamLoader(
         processor=EventsProcessor(promoted_tag_columns),
         default_topic=settings.EVENTS_TOPIC,
-        replacement_topic=settings.REPLACEMENTS_TOPIC,
+        replacement_topic=settings.EVENT_REPLACEMENTS_TOPIC,
         commit_log_topic=settings.COMMIT_LOG_TOPIC,
     ),
     query_splitters=query_splitters,

@@ -13,7 +13,8 @@ REDIS_DB = int(env("REDIS_DB", 1))
 USE_REDIS_CLUSTER = False
 
 EVENTS_TOPIC = env("EVENTS_TOPIC", "events")
-REPLACEMENTS_TOPIC = env("REPLACEMENT_TOPIC", "event-replacements")
+EVENT_REPLACEMENTS_TOPIC = env("EVENT_REPLACEMENT_TOPIC", "event-replacements")
+ERRORS_REPLACEMENTS_TOPIC = env("ERRORS_REPLACEMENT_TOPIC", "errors-replacements")
 COMMIT_LOG_TOPIC = env("COMMIT_LOG_TOPIC", "snuba-commit-logs")
 CDC_TOPIC = env("CDC_TOPIC", "cdc")
 OUTCOMES_TOPIC = env("OUTCOMES_TOPIC", "outcomes")

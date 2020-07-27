@@ -217,7 +217,7 @@ storage = WritableTableStorage(
     stream_loader=KafkaStreamLoader(
         processor=ErrorsProcessor(promoted_tag_columns),
         default_topic=settings.EVENTS_TOPIC,
-        replacement_topic=settings.REPLACEMENTS_TOPIC,
+        replacement_topic=settings.ERRORS_REPLACEMENTS_TOPIC,
     ),
     replacer_processor=ErrorsReplacer(
         write_schema=schema,
