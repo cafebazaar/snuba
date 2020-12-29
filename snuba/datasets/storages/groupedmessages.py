@@ -1,3 +1,4 @@
+from snuba import settings
 from snuba.clickhouse.columns import ColumnSet, DateTime, Nullable, UInt
 from snuba.clusters.storage_sets import StorageSetKey
 from snuba.datasets.cdc import CdcStorage
@@ -66,7 +67,7 @@ storage = CdcStorage(
     query_processors=[],
     stream_loader=KafkaStreamLoader(
         processor=GroupedMessageProcessor(POSTGRES_TABLE),
-        default_topic="cdc",
+        default_topic=settings.CDC_TOPIC,
         pre_filter=CdcTableNameMessageFilter(POSTGRES_TABLE),
     ),
     default_control_topic="cdc_control",

@@ -1,5 +1,6 @@
 from typing import Mapping, Sequence
 
+from snuba import settings
 from snuba.clickhouse.columns import (
     UUID,
     Array,
@@ -213,8 +214,8 @@ storage = WritableTableStorage(
     ],
     stream_loader=KafkaStreamLoader(
         processor=ErrorsProcessor(promoted_tag_columns),
-        default_topic="events",
-        replacement_topic="errors-replacements",
+        default_topic=settings.EVENTS_TOPIC,
+        replacement_topic=settings.ERRORS_REPLACEMENTS_TOPIC,
     ),
     replacer_processor=ErrorsReplacer(
         write_schema=schema,

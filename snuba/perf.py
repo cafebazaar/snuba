@@ -6,6 +6,7 @@ import time
 from datetime import datetime
 from itertools import chain
 from typing import MutableSequence, Sequence
+from snuba import settings
 
 from snuba.util import settings_override
 from snuba.utils.metrics.backends.dummy import DummyMetricsBackend
@@ -27,7 +28,7 @@ def get_messages(events_file) -> Sequence[Message[KafkaPayload]]:
     for raw_event in raw_events:
         messages.append(
             Message(
-                Partition(Topic("events"), 1),
+                Partition(Topic(settings.EVENTS_TOPIC), 1),
                 0,
                 KafkaPayload(None, raw_event.encode("utf-8"), []),
                 datetime.now(),
